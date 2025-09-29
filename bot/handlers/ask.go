@@ -7,6 +7,7 @@ import (
 	"bytes"
 	"encoding/json"
 	"net/http"
+	"go.uber.org/zap"
 )
 
 type GptRequest struct {
@@ -21,6 +22,7 @@ type GptResponse struct {
 func AskHandler(bot *gotgbot.Bot, ctx *ext.Context) error {
 	prompt := &GptRequest{}
 
+	zap.S().Infof("gpt request")
 	msg := ctx.EffectiveMessage.Text
 	prompt.model = os.Getenv("MODEL_NAME")
 	prompt.prompt = os.Getenv("MODEL_PROMPT")+msg
