@@ -74,6 +74,10 @@ func registerHandlers(dispatcher *ext.Dispatcher) {
 		"start",
 		botHandlers.StartHandler,
 	))
+	dispatcher.AddHandler(handlers.NewCommand(
+		"ask",
+		botHandlers.AskHandler,
+	))
 	dispatcher.AddHandler(handlers.NewCallback(
 		callbackquery.Equal("ask"),
 		botHandlers.AskHandler,
