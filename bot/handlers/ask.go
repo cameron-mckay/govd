@@ -36,6 +36,8 @@ func modelQuery(prompt OllamaRequest) (*OllamaResponse, error) {
 	}
 
 	zap.S().Info("request")
+	zap.S().Info(os.Getenv("MODEL_URL"))
+
 	req, err := http.NewRequest(http.MethodPost, os.Getenv("MODEL_URL"), payloadBuffer)
 	if err != nil {
 		return nil, err
