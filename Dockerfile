@@ -1,5 +1,5 @@
 # Build stage
-FROM golang:bookworm AS builder
+FROM golang:1.23 AS builder
 
 # Set build arguments
 ARG FFMPEG_VERSION=7.1

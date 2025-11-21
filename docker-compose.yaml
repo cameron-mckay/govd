@@ -1,10 +1,9 @@
 services:
   govd-bot:
-    image: govdbot/govd:main
+    image: cameronmckay/govd:latest
     container_name: govd-bot
     restart: unless-stopped
-    networks:
-      - govd-network
+    network_mode: "host"
     env_file:
       - .env
     volumes:
@@ -22,11 +21,9 @@ services:
       MARIADB_DATABASE: govd
       MARIADB_USER: govd
       MARIADB_PASSWORD: password
-      MARIADB_ROOT_PASSWORD: example
     volumes:
       - db:/var/lib/mysql
-    networks:
-      - govd-network
+    network_mode: "host"
     healthcheck:
       test: ["CMD", "healthcheck.sh", "--connect", "--innodb_initialized"]
       interval: 5s
@@ -36,8 +33,4 @@ services:
 
 volumes:
   db:
-
-networks:
-  govd-network:
-    driver: bridge
 
